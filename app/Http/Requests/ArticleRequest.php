@@ -18,7 +18,9 @@ class ArticleRequest extends FormRequest
         return [
             'article_title' => 'required|min:3|max:255',
             'article_content' => 'required|min:3',
-            'slug' => 'required|url',
+            'article_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'article_url' => 'required|url',
+//            'slug' => 'required|url',
             'article_date' => 'required|date'
         ];
     }
@@ -32,8 +34,11 @@ class ArticleRequest extends FormRequest
             'article_content.required' => 'Makale içeriği zorunldur.',
             'article_content.min' => 'Makale içeriği uzunluğu en az :min karakterden oluşmalıdır.',
 
-            'slug.required' => 'Makale linki zorunludur.',
-            'slug.url' => 'Makale linki url formatında olmalıdır.',
+            'article_image.required' =>'Makale resmi zorunludur.',
+            'article_image.image' => 'Makale görseli resim formatında olmalıdır.',
+
+            'article_url.required' => 'Makale linki zorunludur.',
+            'article_url.url' => 'Makale linki url formatında olmalıdır.',
 
             'article_date.required' => 'Makale tarihi zorunludur(ör:2023).',
             'article_date.date' => 'Makale tarihi tarih formatında olmalıdır.'

@@ -9,17 +9,16 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ArticleRepository implements ArticleInterface
 {
-    public function create(ArticleDTO $dto): Article
+    public function create(ArticleDTO $dto,$slug): Article
     {
-        return Article::create($dto->toArray());
+        return Article::create($dto->toArray($slug));
     }
     public function update(ArticleDTO $dto): ?Article
     {
         $article = Article::find($dto->id);
         if(!$article) return null;
 
-        $article->update($dto->toArray());
-        return $article;
+        return $article->update($dto->toArray());
     }
     public function delete(string $id): bool
     {

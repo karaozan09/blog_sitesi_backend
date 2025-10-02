@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('experiences', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('article_title');
-            $table->text('article_content');
-            $table->string('article_image');
-            $table->string('article_url');
-            $table->string('slug')->unique();
-            $table->string('article_date');
+            $table->string('experience_name');
+            $table->string('company_name');
+            $table->text('experience_description');
+            $table->string('start_date');
+            $table->string('end_date');
+            $table->string('experience_image');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('experiences');
     }
 };

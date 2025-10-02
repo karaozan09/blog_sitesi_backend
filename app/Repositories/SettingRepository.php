@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\DTOs\ContactDTO;
+use App\DTOs\FooterDTO;
 use App\DTOs\SettingDTO;
 use App\Interfaces\SettingInterface;
 use App\Models\Setting;
@@ -9,25 +11,44 @@ use Illuminate\Database\Eloquent\Collection;
 
 class SettingRepository implements SettingInterface
 {
-    public function create(SettingDTO $dto): Setting
+
+    public function changeSettings(SettingDTO $dto): ?bool
     {
-        return Setting::create($dto->toArray());
-    }
-    public function update(SettingDTO $dto): ?Setting
-    {
-        $setting = Setting::find($dto->id);
+        $setting = Setting::first();
         if(!$setting) return null;
 
-        $setting->update($dto->toArray());
-        return $setting;
+        $setting->logo = $dto->logo;
+        $setting->background_image = $dto->background_image;
+
+       return $setting->save();
     }
-    public function delete(string $id): bool
+    public function delete(SettingDTO $dto): bool
     {
-        $setting = Setting::find($id);
+        $setting = Setting::first();
         return $setting->delete() ?? false;
     }
     public function getAll():Collection
     {
         return Setting::all();
+    }
+    public function changeFooter(FooterDTO $dto): ?bool
+    {
+        $footer = Setting::first();
+        if(!$footer) return null;
+
+        $footer->footer_title= $dto->footer_title;
+        $footer->footer_text= $dto->footer_text;
+       return $footer->save();
+    }
+    public function changeContact(ContactDTO $dto): ?bool
+    {
+        $contact = Setting::first();
+        if(!$contact) return null;
+
+        $contact->email= $dto->email;
+        $contact->phone_number= $dto->phone_number;
+        $contact->address= $dto->address;
+
+        return $contact->save();
     }
 }

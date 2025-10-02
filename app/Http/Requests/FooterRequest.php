@@ -6,27 +6,25 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SettingRequest extends FormRequest
+class FooterRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return true;
     }
+
     public function rules(): array
     {
         return [
-           'logo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'background_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-
+              'footer_title' => 'required',
+            'footer_text' => 'required',
         ];
     }
-    public function messages(): array{
+    public function messages(): array
+    {
         return [
-            'logo.required' => 'logo alanı zorunludur.',
-            'logo.image'=>'Logo alanı resim formatında olmak zorundadır.',
-
-            'background_image.required'=>'Arkaplan resmi zorunludur.',
-            'background_image.image'=>'Arkaplan resmi resim formatında olmak zorundadır.'
+            'footer_title.required' => 'Footer başlık alanı zorunludur.',
+            'footer_text.required' => 'Footer alt metin alanı zorunludur.',
         ];
     }
     protected function failedValidation(Validator $validator)

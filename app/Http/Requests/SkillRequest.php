@@ -6,27 +6,26 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SettingRequest extends FormRequest
+class SkillRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return true;
     }
+
     public function rules(): array
     {
         return [
-           'logo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'background_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-
+            'skill_name' => 'required|string',
+            'skill_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
-    public function messages(): array{
+    public function messages(): array
+    {
         return [
-            'logo.required' => 'logo alanı zorunludur.',
-            'logo.image'=>'Logo alanı resim formatında olmak zorundadır.',
-
-            'background_image.required'=>'Arkaplan resmi zorunludur.',
-            'background_image.image'=>'Arkaplan resmi resim formatında olmak zorundadır.'
+            'skill_name.required' => 'Yetenek adı zorunludur.',
+            'skill_image.required' => 'Yetenek görseli zorunludur.',
+            'skill_image.image'=>'Yetenek görseli resim formatında olmalıdır.'
         ];
     }
     protected function failedValidation(Validator $validator)
@@ -34,6 +33,6 @@ class SettingRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'success' => false,
             'errors' => $validator->errors()
-        ],422));
+        ], 422));
     }
 }

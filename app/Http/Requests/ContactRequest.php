@@ -6,27 +6,31 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SettingRequest extends FormRequest
+class ContactRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return true;
     }
+
     public function rules(): array
     {
         return [
-           'logo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'background_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-
+            'email' => 'required|email',
+            'phone_number' => 'required|max:14',
+            'address' => 'required'
         ];
     }
-    public function messages(): array{
+    public function messages(): array
+    {
         return [
-            'logo.required' => 'logo alanı zorunludur.',
-            'logo.image'=>'Logo alanı resim formatında olmak zorundadır.',
+            'email.required' => 'Email alanı zorunludur.',
+            'email.email' => 'Email email(....@gmail.com) formatında olmalıdır.',
 
-            'background_image.required'=>'Arkaplan resmi zorunludur.',
-            'background_image.image'=>'Arkaplan resmi resim formatında olmak zorundadır.'
+            'phone_number.required' => 'Telefon numarası zorunludur.',
+            'phone_number.max' => 'Telefon numarası en fazla :max karakter olabilir.',
+
+            'address.required' => 'Adres zorunludur.'
         ];
     }
     protected function failedValidation(Validator $validator)

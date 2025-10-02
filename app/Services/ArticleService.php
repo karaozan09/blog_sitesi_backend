@@ -6,6 +6,7 @@ use App\DTOs\ArticleDTO;
 use App\Interfaces\ArticleInterface;
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Str;
 
 class ArticleService extends BaseService
 {
@@ -13,7 +14,11 @@ class ArticleService extends BaseService
 
     public function create(ArticleDTO $dto): Article
     {
-        return $this->handle(fn()=> $this->repo->create($dto));
+        return $this->handle(function () use ($dto){
+           $slug = Str::slug($dto->article_title);
+            $article = $this->repo->create($dto, $slug);
+            return $article;
+    });
     }
     public function update(ArticleDTO $dto): ?Article
     {

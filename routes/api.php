@@ -3,8 +3,10 @@
 //use Illuminate\Http\Request;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SocialMediaController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,8 +49,24 @@ Route::prefix('social-media')->group(function (){
 });
 Route::prefix('setting')->group(function (){
     Route::post('/create', [SettingController::class, 'create']);
-    Route::put('/update/{id}', [SettingController::class, 'update']);
-    Route::delete('/delete/{id}', [SettingController::class, 'delete']);
+    Route::post('changeSettings', [SettingController::class, 'changeSettings']);
+    Route::delete('/delete', [SettingController::class, 'delete']);
     Route::get('getAll',[SettingController::class, 'getAll']);
+    Route::patch('changeFooter', [SettingController::class, 'changeFooter']);
+    Route::patch('changeContact', [SettingController::class, 'changeContact']);
+});
+Route::prefix('skill')->group(function (){
+    Route::post('/create', [SkillController::class, 'create']);
+    Route::post('/update/{id}', [SkillController::class, 'update']);
+    Route::delete('/delete/{id}', [SkillController::class, 'delete']);
+    Route::get('getById/{id}', [SkillController::class, 'getById']);
+    Route::get('getAll',[SkillController::class, 'getAll']);
+});
+Route::prefix('experience')->group(function (){
+    Route::post('/create', [ExperienceController::class, 'create']);
+    Route::post('/update/{id}', [ExperienceController::class, 'update']);
+    Route::delete('/delete/{id}', [ExperienceController::class, 'delete']);
+    Route::get('getById/{id}', [ExperienceController::class, 'getById']);
+    Route::get('getAll',[ExperienceController::class, 'getAll']);
 });
 

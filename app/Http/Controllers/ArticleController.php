@@ -16,7 +16,8 @@ class ArticleController extends JsonResponseMessageController
             id:null,
             article_title:$request->article_title,
             article_content:$request->article_content,
-            slug:$request->slug,
+            article_image: $request->article_image,
+            article_url: $request->article_url,
             article_date:$request->article_date
         );
         $article = $this->service->create($dto);
@@ -31,7 +32,8 @@ class ArticleController extends JsonResponseMessageController
             id:$id,
             article_title: $request->article_title,
             article_content:$request->article_content,
-            slug:$request->slug,
+            article_image: $request->article_image,
+            article_url: $request->article_url,
             article_date:$request->article_date
         );
         $article = $this->service->update($dto);

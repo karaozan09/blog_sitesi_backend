@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
 
 class Article extends BaseModel
 {
@@ -12,6 +11,8 @@ class Article extends BaseModel
     protected $fillable = [
         'article_title',
         'article_content',
+        'article_image',
+        'article_url',
         'slug',
         'article_date'
     ];

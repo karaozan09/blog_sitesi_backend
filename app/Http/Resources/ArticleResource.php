@@ -13,6 +13,8 @@ class ArticleResource extends JsonResource
             'id'=>$this->id,
             'article_title'=>$this->article_title,
             'article_content'=>$this->article_content,
+            'article_image' =>$this->article_image,
+            'article_url' => $this->article_url,
             'slug'=>$this->slug,
             'article_date'=>$this->article_date
         ];

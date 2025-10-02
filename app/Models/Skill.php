@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class About extends BaseModel
+class Skill extends BaseModel
 {
     use HasFactory;
-    protected $table = 'about';
 
     protected $fillable = [
-        'full_name',
-        'title',
-        'about'
+        'skill_name',
+        'skill_image'
     ];
 }
