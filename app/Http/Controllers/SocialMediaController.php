@@ -11,7 +11,7 @@ class SocialMediaController extends JsonResponseMessageController
 {
     public function __construct(protected SocialMediaService $service){}
 
-    public function create(SocialMediaRequest $request)
+    public function create(SocialMediaRequest $request): JsonResponse
     {
         $dto = new Social_MediaDTO(
             id:null,

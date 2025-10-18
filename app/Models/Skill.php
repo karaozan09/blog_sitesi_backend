@@ -11,6 +11,10 @@ class Skill extends BaseModel
 
     protected $fillable = [
         'skill_name',
-        'skill_image'
     ];
+    protected $with = ['file'];
+    public function file()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
 }

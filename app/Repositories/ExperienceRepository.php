@@ -18,7 +18,8 @@ class ExperienceRepository implements ExperienceInterface
         $experience = Experience::find($dto->id);
         if(!$experience) return null;
 
-        return $experience->update($dto->toArray());
+        $experience->update($dto->toArray());
+        return $experience;
     }
     public function delete(String $id): bool
     {

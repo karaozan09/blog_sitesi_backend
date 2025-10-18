@@ -3,6 +3,7 @@
 //use Illuminate\Http\Request;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SettingController;
@@ -19,10 +20,15 @@ use Illuminate\Support\Facades\Route;
 | grubunda yüklenir. Uygun olan yerde controllerlara yönlendirme yapılabilir.
 |
 */
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+
+Route::middleware('auth:sanctum')->group(function () {
 
 Route::prefix('article')->group(function () {
     Route::post('/create', [ArticleController::class, 'create']);
-    Route::put('/update/{id}', [ArticleController::class, 'update']);
+    Route::post('/update/{id}', [ArticleController::class, 'update']);
     Route::delete('/delete/{id}', [ArticleController::class, 'delete']);
     Route::get('/get/{id}', [ArticleController::class, 'getById']);
     Route::get('/getAll', [ArticleController::class, 'getAll']);
@@ -48,7 +54,6 @@ Route::prefix('social-media')->group(function (){
     Route::get('/getAll',[SocialMediaController::class, 'getAll']);
 });
 Route::prefix('setting')->group(function (){
-    Route::post('/create', [SettingController::class, 'create']);
     Route::post('changeSettings', [SettingController::class, 'changeSettings']);
     Route::delete('/delete', [SettingController::class, 'delete']);
     Route::get('getAll',[SettingController::class, 'getAll']);
@@ -70,3 +75,4 @@ Route::prefix('experience')->group(function (){
     Route::get('getAll',[ExperienceController::class, 'getAll']);
 });
 
+});

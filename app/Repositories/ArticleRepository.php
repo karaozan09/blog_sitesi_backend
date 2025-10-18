@@ -13,12 +13,13 @@ class ArticleRepository implements ArticleInterface
     {
         return Article::create($dto->toArray($slug));
     }
-    public function update(ArticleDTO $dto): ?Article
+    public function update(ArticleDTO $dto,string $slug): ?Article
     {
         $article = Article::find($dto->id);
         if(!$article) return null;
 
-        return $article->update($dto->toArray());
+         $article->update($dto->toArray($slug));
+         return $article;
     }
     public function delete(string $id): bool
     {

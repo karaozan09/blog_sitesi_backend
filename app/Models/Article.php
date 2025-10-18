@@ -11,9 +11,13 @@ class Article extends BaseModel
     protected $fillable = [
         'article_title',
         'article_content',
-        'article_image',
         'article_url',
         'slug',
         'article_date'
     ];
+    protected $with = ['file'];
+    public function file()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
 }

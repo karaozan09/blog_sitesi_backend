@@ -15,6 +15,11 @@ class Experience extends BaseModel
         'experience_description',
         'start_date',
         'end_date',
-        'experience_image'
     ];
+    protected $with = ['file'];
+
+    public function file()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
 }

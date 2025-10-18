@@ -16,7 +16,7 @@ class ExperienceResource extends JsonResource
             'experience_description' => $this->experience_description,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'experience_image' => $this->experience_image
+            'experience_image' => new FileResource($this->file)
         ];
     }
 }

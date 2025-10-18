@@ -11,7 +11,11 @@ class Social_Media extends BaseModel
 
     protected $fillable = [
         'social_media_platform',
-        'social_media_icon',
         'social_media_url'
     ];
+    protected $with = ['file'];
+    public function file()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
 }

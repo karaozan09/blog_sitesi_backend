@@ -33,6 +33,9 @@ class ExperienceRequest extends FormRequest
             'start_date.date' => 'Deneyim başlangıç tarihi, tarih formatında olmalıdır.',
             'end_date.required' => 'Deneyim bitiş tarihi zorunludur.',
             'end_date.date' => 'Deneyim bitiş tarihi, tarih formatında olmalıdır.',
+            'experience_image.required' => 'Deneyim görseli zorunludur.',
+            'experience_image.image'=>'Deneyim görseli resim formatında olmalıdır.',
+            'experience_image.max'=>'Deneyim görseli boyutu en fazla :max olabilir.'
         ];
     }
     protected function failedValidation(Validator $validator)

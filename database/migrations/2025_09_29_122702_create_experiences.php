@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('experience_description');
             $table->string('start_date');
             $table->string('end_date');
-            $table->string('experience_image');
+           // $table->string('experience_image');
             $table->timestamps();
         });
     }

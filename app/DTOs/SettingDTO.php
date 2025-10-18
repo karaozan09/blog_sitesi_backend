@@ -2,17 +2,16 @@
 
 namespace App\DTOs;
 
+use Illuminate\Http\UploadedFile;
+
 class SettingDTO
 {
     public function __construct(
-        public readonly ?string $logo,
-        public readonly ?string $background_image
+        public readonly ?UploadedFile $logo,
+        public readonly ?UploadedFile $background_image
     ){}
     public function toArray(): array
     {
-        return [
-            'logo' => $this->logo,
-            'background_image' => $this->background_image
-        ];
+        return [];
     }
 }

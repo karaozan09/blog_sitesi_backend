@@ -9,12 +9,15 @@ class Setting extends BaseModel
     use HasFactory;
 
     protected $fillable = [
-        'logo',
-        'background_image',
         'footer_title',
         'footer_text',
         'email',
         'phone_number',
         'address'
     ];
+    protected $with = ['files'];
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
 }

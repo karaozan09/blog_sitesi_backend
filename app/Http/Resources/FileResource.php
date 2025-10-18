@@ -5,15 +5,16 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SocialMediaResource extends JsonResource
+class FileResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
-            'social_media_platform'=>$this->social_media_platform,
-            'social_media_icon'=>new FileResource($this->file),
-            'social_media_url'=>$this->social_media_url
+            'file_path' => asset('storage/' . $this->file_path),
+            'original_name' => $this->original_name,
+            'mime_type' => $this->mime_type,
+            'size' => $this->size,
         ];
     }
 }

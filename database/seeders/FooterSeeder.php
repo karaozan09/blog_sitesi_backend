@@ -13,8 +13,6 @@ class FooterSeeder extends Seeder
         DB::table('settings')->insert([
             [
                 'id'            => 1,
-                'logo'          => '',
-                'background_image' => '',
                 'footer_title'  => '',
                 'footer_text'   => 'Tüm Hakları Saklıdır',
                 'email'         => 'karaozanb@gmail.com',

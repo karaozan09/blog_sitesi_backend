@@ -18,7 +18,8 @@ class SkillRepository implements SkillInterface
         $skill = Skill::find($dto->id);
         if(!$skill) return null;
 
-        return $skill->update($dto->toArray());
+        $skill->update($dto->toArray());
+        return $skill;
     }
     public function delete(string $id): bool
     {

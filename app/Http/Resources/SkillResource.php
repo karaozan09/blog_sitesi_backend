@@ -12,7 +12,7 @@ class SkillResource extends JsonResource
         return [
             'id'=>$this->id,
             'skill_name'=>$this->skill_name,
-            'skill_image'=>$this->skill_image
+            'skill_image'=>new FileResource($this->file)
         ];
     }
 }
