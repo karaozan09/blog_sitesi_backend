@@ -22,11 +22,6 @@ class SettingRepository implements SettingInterface
 
        return $setting->save();
     }
-    public function delete(SettingDTO $dto): bool
-    {
-        $setting = Setting::first();
-        return $setting->delete() ?? false;
-    }
     public function getAll():Collection
     {
         return Setting::all();

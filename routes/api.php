@@ -55,7 +55,6 @@ Route::prefix('social-media')->group(function (){
 });
 Route::prefix('setting')->group(function (){
     Route::post('changeSettings', [SettingController::class, 'changeSettings']);
-    Route::delete('/delete', [SettingController::class, 'delete']);
     Route::get('getAll',[SettingController::class, 'getAll']);
     Route::patch('changeFooter', [SettingController::class, 'changeFooter']);
     Route::patch('changeContact', [SettingController::class, 'changeContact']);

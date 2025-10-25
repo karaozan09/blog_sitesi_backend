@@ -35,21 +35,6 @@ class SettingService extends BaseService
             return $setting;
         });
     }
-
-    public function delete(SettingDTO $dto): bool
-    {
-        return $this->handle(function () use ($dto) {
-            $setting = Setting::first();
-
-            if ($setting && $setting->files) {
-                foreach ($setting->files as $file) {
-                    $this->fileService->deleteFile($file->file_path);
-                    $file->delete();
-                }
-            }
-            return $this->repo->delete($dto);
-        });
-    }
     public function getAll(): Collection
     {
         return $this->repo->getAll();

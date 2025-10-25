@@ -27,13 +27,6 @@ class SettingController extends JsonResponseMessageController
         }
         return $this->notFound("Ayarlar kısmı bulunamadı.");
     }
-    public function delete(SettingDTO $dto):JsonResponse
-    {
-        if($this->service->delete($dto)){
-            return $this->deleted("Ayarlar kısmı başarıyla silindi.");
-        }
-        return $this->notFound("Ayarlar kısmı bulunamadı.");
-    }
     public function getAll():JsonResponse
     {
         return $this->success(data:SettingResource::collection($this->service->getAll()));
